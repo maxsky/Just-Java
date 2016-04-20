@@ -1,0 +1,8 @@
+<!--
+  ~ Copyright (c) 2016. MaxSky.TK. All Rights Reserved.
+  -->
+
+<resources>
+	<string name="app_name">Just Java</string>
+	<string name="action_settings">Settings</string>
+</resources>
