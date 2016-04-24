@@ -50,9 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
 	public void submitOrder(View view) {
 		if (numOfCoffees > 0) {
-			Toast.makeText(this, "咖啡马上就到，不要急哈~", Toast.LENGTH_SHORT).show();
+			String msg = "您点的 " + numOfCoffees + " 杯咖啡马上就到，不要急哈~ \n一共消费 RMB：" + numOfCoffees * 5 + " 元。";
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+			displayMessage(msg);
 		} else {
-			Toast.makeText(this, "你都不点一个也不付钱我送空气呢？", Toast.LENGTH_SHORT).show();
+			String msg = "你都不点一个也不付钱我送空气呢？滚(ノ｀Д)ノ";
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+			displayMessage(msg);
 		}
 	}
 
@@ -66,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
 		priceTextView.setText("" + NumberFormat.getCurrencyInstance().format(number));
 	}
 
+	private void displayMessage(String message) {
+		TextView msgTextView = (TextView) findViewById(R.id.message);
+		msgTextView.setText(message);
+	}
+
 	public void increment(View view) {
 		display(numOfCoffees += 1); // numOfCoffees +=1 等同于 numOfCoffees = numOfCoffees + 1
 		displayPrice(numOfCoffees * 5);
@@ -74,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
 	public void decrement(View view) {
 		if (numOfCoffees - 1 >= 0) {    // 如果 numOfCoffees - 1 后小于 0，就不继续减下去了，避免出现 -1 等情况
 			display(numOfCoffees -= 1); // numOfCoffees -=1 等同于 numOfCoffees = numOfCoffees - 1
+			displayPrice(numOfCoffees * 5);
 		} else {
-			Toast.makeText(this, "莫非你还想倒送我几杯咖啡吗？", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "莫非你想倒送我几杯咖啡吗？走开(ノ｀Д)ノ", Toast.LENGTH_SHORT).show();
 		}
-		displayPrice(numOfCoffees * 5);
 	}
 }
